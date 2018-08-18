@@ -1,12 +1,11 @@
 $(function() {
-  // セーブボタンが押されたら、
-  // ローカルストレージに保存する。
+  // save to local storage when save button clicked.
   $('#save').click(function() {
     localStorage['jiraHost'] = $('#jiraHost').val();
     localStorage['crucibleHost'] = $('#crucibleHost').val();
   });
 
-  // オプション画面の初期値を設定する
+  // fill default value from local storage.
   if (localStorage['jiraHost']) {
     $('#jiraHost').val(localStorage['jiraHost']);
   }
