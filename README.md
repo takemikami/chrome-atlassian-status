@@ -1,4 +1,4 @@
-Chrome Extension for Atlasian Status Badge
+Chrome Extension for Atlassian Status Badge
 ----
 
 This is chrome extension for atlassian services (jira, crucible).  

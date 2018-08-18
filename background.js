@@ -8,7 +8,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
       break;
     case 'getItem': // 指定されたkeyの値を取得
       sendResponse({data: localStorage.getItem(request.key)});
-      //sendResponse({data: JSON.parse(localStorage.getItem(request.key))});
+      // sendResponse({data: JSON.parse(localStorage.getItem(request.key))});
       break;
     case 'setItem': // 指定されたkeyと値を保存（更新）
       sendResponse({data: localStorage.setItem(request.key, request.value)});
@@ -16,7 +16,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     case 'removeItem': // 指定されたkeyの値を削除
       sendResponse({data: localStorage.removeItem[request.key]});
       break;
-    case 'clearAll': //　すべてのデータを削除
+    case 'clearAll': // すべてのデータを削除
       sendResponse({data: localStorage.clear()});
       break;
     default:
