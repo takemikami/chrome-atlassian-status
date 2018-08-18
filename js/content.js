@@ -14,7 +14,6 @@ chrome.runtime.sendMessage({method: 'getItem', key: 'jiraHost'},
   function(response) {
     if (response.data) {
       jiraHost = response.data;
-      console.log(response.data);
     }
   }
 );
@@ -22,7 +21,6 @@ chrome.runtime.sendMessage({method: 'getItem', key: 'crucibleHost'},
   function(response) {
     if (response.data) {
       crucibleHost = response.data;
-      console.log(response.data);
     }
   }
 );
@@ -56,15 +54,46 @@ function appendJiraStatus(host, jiraid, elem) {
   request.addEventListener('load', (event) => {
     if (event.target.status==200) {
       let respJson = eval('(' + event.target.responseText + ')');
+      let issueStatus = respJson.fields.status;
       elem.innerHTML = '[JIRA:' + jiraid + '] ' + respJson.fields.summary;
-      let info = document.createElement('span');
-      info.style = badgeStyle;
-      info.innerHTML = '&nbsp;' + respJson.fields.status.name + '&nbsp;';
-      elem.appendChild(info);
       elem.title = '[JIRA: ' + jiraid + '] ' + respJson.fields.summary;
+      let info = document.createElement('span');
+      info.style = createJiraBadgeStyle(issueStatus.statusCategory.colorName);
+      info.innerHTML = '&nbsp;' + issueStatus.name + '&nbsp;';
+      elem.insertBefore(info, elem.firstChild);
     }
   });
   request.send();
+}
+/**
+ * create badge style string from color name
+ * @param {string} colorName - name of color
+ * @return {string} badge style string
+ */
+function createJiraBadgeStyle(colorName) {
+  const styleBase = 'margin-right:0.5em;text-decoration:none;';
+  switch (colorName) {
+    case 'green':
+      return styleBase
+        + 'background-color:#14892c;border-color:#14892c;color:#fff';
+    case 'yellow':
+      return styleBase
+        + 'background-color:#ffd351;border-color:#ffd351;color:#594300;';
+    case 'brown':
+      return styleBase
+        + 'background-color:#815b3a;border-color:#815b3a;color:#fff';
+    case 'warm-red':
+      return styleBase
+        + 'background-color:#d04437;border-color:#d04437;color:#fff';
+    case 'blue-gray':
+      return styleBase
+        + 'background-color:#4a6785;border-color:#4a6785;color:#fff';
+    case 'medium-gray':
+      return styleBase
+        + 'background-color:#ccc;border-color:#ccc;color:#333';
+  }
+  return styleBase
+    + 'background-color:#ccc;border-color:#ccc;color:#333';
 }
 
 /**
@@ -133,14 +162,13 @@ let fx = function() {
       appendCrucibleStatus(crucibleHost, crId, links[i]);
     }
   }
-  console.log('extension:end');
 };
 
 let observer = new MutationObserver(function(mutations) {
   fx();
 });
-observer.observe(document.head, {
-  childList: true, subtree: false,
+observer.observe(document.body, {
+  childList: true, subtree: true,
 });
 
 setTimeout(fx, 100);
