@@ -1,0 +1,11 @@
+{
+  "name": "chrome-atlassian-status",
+  "version": "0.0.1",
+  "repository": "git@github.com:takemikami/chrome-atlassian-status.git",
+  "author": "Mikami, Takeshi",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^5.4.0",
+    "eslint-config-google": "^0.9.1"
+  }
+}
