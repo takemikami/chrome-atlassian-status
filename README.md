@@ -4,6 +4,17 @@ Chrome Extension for Atlassian Status Badge
 This is chrome extension for atlassian services (jira, crucible).  
 Add status badge to link to jira issue, crucible review page.
 
+## Overview
+
+Someonw write jira issue link to any post.
+
+![write](images/write.png)
+
+This extension replace issue link text to status badge and summary.
+And you can see issue status without visiting to jira issue page.
+
+![preview](images/preview.png)
+
 ## How to Setup
 
 1. Clone repository.
