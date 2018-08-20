@@ -3,6 +3,7 @@ $(function() {
   $('#save').click(function() {
     localStorage['jiraHost'] = $('#jiraHost').val();
     localStorage['crucibleHost'] = $('#crucibleHost').val();
+    localStorage['confluenceHost'] = $('#confluenceHost').val();
   });
 
   // fill default value from local storage.
@@ -11,5 +12,8 @@ $(function() {
   }
   if (localStorage['crucibleHost']) {
     $('#crucibleHost').val(localStorage['crucibleHost']);
+  }
+  if (localStorage['confluenceHost']) {
+    $('#confluenceHost').val(localStorage['confluenceHost']);
   }
 });
