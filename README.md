@@ -1,8 +1,8 @@
 Chrome Extension for Atlassian Status Badge
 ----
 
-This is chrome extension for atlassian services (jira, crucible).  
-Add status badge to link to jira issue, crucible review page.
+This is chrome extension for atlassian services (jira, confluence, crucible).  
+Add status badge to link to jira issue, confluence page, crucible review page.
 
 ## Overview
 
